@@ -7,6 +7,7 @@
 - [Intro](#intro)
 - [ScreenShots](#screenshots)
 - [Applications](#applications)
+- [Gatter_Tools](#gattertools)
 - [Shortcuts](#shortcuts)
 - [Donate](#donate)
 
@@ -17,12 +18,12 @@
 
 ## ScreenShots 
 <div align="center">
-    <img width="500" src="pics/Desktop.png">
-    <img width="500" src="pics/Welcome.png">
+    <img width="400" src="pics/Desktop.png">
+    <img width="400" src="pics/Welcome.png">
 </div>
 <div align="center">
-    <img width="500" src="pics/menu.png">
-    <img width="500" src="pics/inaction.png">
+    <img width="400" src="pics/menu.png">
+    <img width="400" src="pics/inaction.png">
 </div>
 
 ## Applications 
@@ -32,15 +33,36 @@
 - [Chromium Browser](https://chromium.googlesource.com/chromium/src/) : Chromium web browser, open-source version of Chrome
 - [PcmanFm](http://pcmanfm.sourceforge.net/) : extremely fast and lightweight file manager
 - [Geany](http://www.geany.org) : Geany is a small and lightweight integrated development environment.
-- [g-wall]() : Wallpaper Manager for Gatter Linux 
+- compton
+- vim 
+- xarchiver
+- gpicview
+- gparted
+- tint2
+- rofi
+... and others 
+
+## GatterTools
+- g-wall
 
 ## Shortcuts
 
-- `Ctrl+Alt+t`  - Terminal Emilator
-- `Alt+b`       - Web Browser
-- `Alt+h`       - File Manager
-- `Alt+e`       - Text Editor 
-- `Alt+w`       - Wallpaper Manager
+- `Ctrl+Alt+left`   - Go to Left Desktop
+- `Ctrl+Alt+right`  - Go to Right Desktop
+- `Alt+Shift+left`  - Send to Left Desktop
+- `Alt+Shift+right` - Send to Right Desktop
+- `Super+d`         - Show Desktop
+- `Alt+F4`          - Close Widnow
+- `Alt+Space`       - show Client Window Menu
+- `Alt+Tab`         - Switch to next window
+- `Ctrl+Alt+t`      - Terminal Emilator
+- `Alt+b`           - Web Browser
+- `Alt+h`           - File Manager
+- `Alt+e`           - Text Editor 
+- `Alt+w`           - Wallpaper Manager
+- `Alt+d`           - command dialog
+- `Alt+q`           - Close Widnow
+- `Alt+Shift+q`     - Exit Dialog 
 
 ## Donate
 
