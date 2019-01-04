@@ -1,6 +1,9 @@
 <div align="center">
     <img width="120" src="pics/logo.png">
     <img width="500" src="pics/gatter_linux.png">
+    <p>
+		<a href="https://zakariagatter.wixsite.com/gatter-linux">Gatter Linux 1.1</a>
+	</p>
 </div>
 
 ## Contents
