@@ -16,11 +16,14 @@
 - Gatter Linux Give you lot of scripts to make your time with it easier and much more fun 
 
 ## ScreenShots 
-
-![Desktop](pics/Desktop.png)
-![Welcome](pics/Welcome.png)
-![Menu](pics/menu.png)
-![In Action](pics/inaction.png)
+<div align="center">
+    <img width="500" src="pics/Desktop.png">
+    <img width="500" src="pics/Welcome.png">
+</div>
+<div align="center">
+    <img width="500" src="pics/menu.png">
+    <img width="500" src="pics/inaction.png">
+</div>
 
 ## Applications 
 
