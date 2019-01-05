@@ -10,7 +10,7 @@
 - [Intro](#intro)
 - [ScreenShots](#screenshots)
 - [Applications](#applications)
-- [Gatter_Tools](#gattertools)
+- [Gatter Tools](#gatter tools)
 - [Shortcuts](#shortcuts)
 - [Donate](#donate)
 
@@ -21,8 +21,8 @@
 
 ## ScreenShots 
 <div align="center">
-    <img width="400" src="pics/Desktop.png">
-    <img width="400" src="pics/Welcome.png">
+    <img width="400" src="pics/Desktop.png" href="pics/Desktop.png">
+    <img width="400" src="pics/Welcome.png" href="pics/Welcome.png">
 </div>
 <div align="center">
     <img width="400" src="pics/menu.png">
@@ -36,17 +36,35 @@
 - [Chromium Browser](https://chromium.googlesource.com/chromium/src/) : Chromium web browser, open-source version of Chrome
 - [PcmanFm](http://pcmanfm.sourceforge.net/) : extremely fast and lightweight file manager
 - [Geany](http://www.geany.org) : Geany is a small and lightweight integrated development environment.
-- compton
-- vim 
-- xarchiver
-- gpicview
-- gparted
-- tint2
-- rofi
+- [vim](https://vim.sourceforge.io/) : Vim is an almost compatible version of the UNIX editor Vi. 
+- [xarchiver](https://github.com/ib/xarchiver) : Xarchiver is a lightweight desktop independent GTK+ frontend for manipulating
+- [gpicview](http://www.lxde.org/) : GPicView is a lightweight GTK+ 2.x based image viewer
+- [gparted](http://gparted.sourceforge.net) : GNOME partition editor
+- [tint2](https://gitlab.com/o9000/tint2/) : Tint is a simple panel/taskbar intentionally made for openbox3
+- [rofi](https://github.com/DaveDavenport/rofi/) : rofi can act as an application launcher, window switcher, ssh launcher and
+ dmenu replacement
+
 ... and others 
 
-## GatterTools
+## Gatter Tools
 - g-wall
+- g-vol
+- g-welcome
+- g-settings
+- aptgate
+- g-apps
+- g-cal
+- g-exit
+- g-gen
+- g-hash
+- g-key
+- g-rofi
+- gsu
+- g-time
+- info-gate
+- mime-gate
+- screen-gate
+- usb-gate
 
 ## Shortcuts
 
