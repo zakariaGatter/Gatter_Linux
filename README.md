@@ -10,7 +10,7 @@
 - [Intro](#intro)
 - [ScreenShots](#screenshots)
 - [Applications](#applications)
-- [Gatter Tools](#gatter_ools)
+- [Gatter Tools](#gatter_tools)
 - [Shortcuts](#shortcuts)
 - [Donate](#donate)
 
