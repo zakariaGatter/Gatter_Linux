@@ -2,8 +2,8 @@
     <img width="120" src="pics/logo.png">
     <img width="500" src="pics/gatter_linux.png">
     <p>
-		<a href="https://zakariagatter.wixsite.com/gatter-linux">Gatter Linux 1.1</a>
-	</p>
+        <a href="https://zakariagatter.wixsite.com/gatter-linux">Gatter Linux 1.1</a>
+    </p>
 </div>
 
 ## Contents
@@ -15,8 +15,8 @@
 - [Donate](#donate)
 
 ## Intro 
-- Gatte Linux is a GNU/Linux Distrobution base on ubuntu LTS.
-- Gatter Linux is fast, lightweight, full customizable distrobution built around openbox window manager with minimal Application Collations 
+- Gatte Linux is a GNU/Linux Distribution base on ubuntu LTS 18.04.1
+- Gatter Linux is fast, lightweight, full customize distribution built around openbox window manager with minimal Application Collations 
 - Gatter Linux Give you lot of scripts to make your time with it easier and much more fun 
 
 ## ScreenShots 
@@ -47,24 +47,23 @@
 ... and others 
 
 ## Gatter_Tools
-- g-wall
-- g-vol
-- g-welcome
-- g-settings
-- aptgate
-- g-apps
-- g-cal
-- g-exit
-- g-gen
-- g-hash
-- g-key
-- g-rofi
-- gsu
-- g-time
-- info-gate
-- mime-gate
-- screen-gate
-- usb-gate
+- g-wall : Wallpaper Manager For Gatter Linux using Hsetroot (double click to view the wallpapaer)
+- g-vol : Volume icon Tray For Gatter Linux using Yad (click the volime icon tray to make dialog vanish)
+- g-welcome : Welcome Screen for Gatter Linux (simple step by step welcome screen)
+- g-settings : Settings Dialog for Gatter Linux (multi tools to control Gatter Linux )
+- aptgate : Terminal base Application Manager for Gatter Linux (don't need synaptic this is better )
+- g-apps : Application Menu for Gatter Linux using Rofi (simple rofi script to make a menu )
+- g-exit : Exit Dialog for Gatter Linux (log out, ShutDown, Reboot ... )
+- g-gen : Multi generator Tools in one place (password , mac addr ... )
+- g-hash : Give and compare 2 files hashs (take terminal command and make them better)
+- g-key : Change keyboard layout (usr system tools only)
+- g-rofi : run command for Gatter Linux use `Alt+d` (simple rofi)
+- gsu : Permition Dialog for some applications (replacment of gsudo but keep the theme)
+- g-time : Change Time/Date and Timezone (use system tools only)
+- info-gate : System Information for Gatter Linux (give you all information you need to know about your system and more)
+- mime-gate : Mime Editor For Gatter Linux (Control and Edit which application open a certain extantion)
+- screen-gate : ScreenShot application for Gatter Linux (Take scrot and give it a graphic interface)
+- usb-gate : Usb Manager For Gatter Linux (Script to format and create a bootable usb stick)
 
 ## Shortcuts
 
@@ -91,5 +90,5 @@
 
 ## Donate
 
-- [PayPal](https://www.paypal.me/ZGatter/5)
+- [PayPal](https://www.paypal.me/ZGatter/10)
 - [Patreon](https://www.patreon.com/user?u=16191162)
