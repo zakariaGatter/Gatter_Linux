@@ -84,6 +84,10 @@
 - `Alt+d`           - command dialog
 - `Alt+q`           - Close Widnow
 - `Alt+Shift+q`     - Exit Dialog 
+- `Super+Right`	    - Give window half right screen
+- `Super+Left`      - Give window half left screen
+- `Super+Up`	    - Minimis Window
+- `Super+Down`      - Maximis Window
 
 ## Donate
 
