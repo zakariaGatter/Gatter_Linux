@@ -10,7 +10,7 @@
 - [Intro](#intro)
 - [ScreenShots](#screenshots)
 - [Applications](#applications)
-- [Gatter Tools](#gatter tools)
+- [Gatter Tools](#gatter_ools)
 - [Shortcuts](#shortcuts)
 - [Donate](#donate)
 
@@ -46,7 +46,7 @@
 
 ... and others 
 
-## Gatter Tools
+## Gatter_Tools
 - g-wall
 - g-vol
 - g-welcome
