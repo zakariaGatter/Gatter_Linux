@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Exec=g-welcome
+Hidden=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=true
+Name[en_US]=Gatter Welcome screen
+Name=Gatter Welcome Screen
+Comment[en_US]=
+Comment=

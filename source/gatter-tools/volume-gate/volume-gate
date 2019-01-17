@@ -1,0 +1,57 @@
+#!/bin/bash 
+
+xfce4-volumed &
+
+_VOL_CONTROL() {
+if [ -n "$(xdotool search --name Volume_gat)" ];then 
+	xdotool windowkill $(xdotool search --name Volume_gat)
+else
+	yad \
+	--title=Volume_gate \
+	--mouse \
+	--close-on-unfocus \
+	--window-icon="audio-speakers" \
+	--sticky \
+	--undecorated \
+	--scale \
+	--borders="12" \
+	--on-top \
+	--button="!audio-volume-muted!Mute-Unmute:amixer -q -D pulse sset Master toggle" \
+	--button="!audio-speakers!Show Mixer Program:bash -c pavucontrol" \
+	--min-value=0 \
+	--max-value=100 \
+	--print-partial \
+	--value=$(amixer get Master | awk '/Mono:/{gsub ("\\[|]|%",""); print $4}') 2> /dev/null \
+	| while read v; do 
+		amixer -q set 'Master' $v%
+	done
+fi
+}
+
+export -f _VOL_CONTROL
+
+mkfifo /tmp/vol
+exec 3<> /tmp/vol 
+
+yad --text="<b><big>✔</big> Volume notification</b>
+Volume : $(amixer get Master | awk '/Mono:/{gsub ("\\[|]|",""); print $4}')" --notification --no-middle --kill-parent --listen <&3 & 
+
+echo "action:bash -c _VOL_CONTROL" >&3
+
+while true ; do 
+
+VOL=$(amixer get Master | awk '/Mono:/{gsub ("\\[|]|%",""); print $4}')
+
+if [ "$VOL" -gt "60" ] ;then
+	V_ICON="audio-volume-high"
+elif [ "$VOL" -gt "20" ] ;then
+	V_ICON="audio-volume-medium"
+elif [ "$VOL" -lt "20" ] ;then
+	V_ICON="audio-volume-low"
+fi 
+
+echo "icon:$V_ICON" >&3
+ 
+
+sleep 0.5
+done 

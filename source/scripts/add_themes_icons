@@ -1,0 +1,3 @@
+#!/bin/bash 
+
+sudo apt install blackbird-gtk-theme greybird-gtk-theme papirus-icon-them

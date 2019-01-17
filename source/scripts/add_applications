@@ -1,0 +1,35 @@
+#!/bin/bash 
+
+sudo apt install openbox \
+    lxappearance \
+    lxappearance-obconf \
+    hsetroot \
+    lxerminal \
+    lxinput \
+    lxrandr \
+    lxpolkit \
+    lxtask \
+    numix-gtk-theme \
+    numix-blue-gtk-theme \
+    software-properties-gtk \
+    lightdm lightdm-gtk-greeter-settings \
+    pcmanfm \
+    xarchiver \
+    geany \
+    xfce4-clipman \
+    xfce4-notifyd \
+    xfce4-volumed \
+    obmenu \
+    htop \
+    chromium-browser \
+    yad \
+    rofi \
+    tint2 \
+    compton \
+    compton-conf \
+    gpicview \
+    vlc \
+    pavucontrol \
+    git \
+    gparted \
+    network-managet-gnome 

@@ -1,0 +1,3 @@
+#!/bin/bash 
+
+exec "$HOME/.local/share/mime-gate/mime.sh"
