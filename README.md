@@ -33,7 +33,7 @@
     <img width="400" src="pics/inaction.png">
 </div>
 
-## Downaload 
+## Download 
 
 Gatter Linux is Now on the Version (1.1) base on Ubuntu 18.04.1 
 - You can download Gatter Linux from [Sourcefourg](https://sourceforge.net/projects/gatter-linux/)
@@ -59,15 +59,15 @@ Gatter Linux is Now on the Version (1.1) base on Ubuntu 18.04.1
 | Gatter Tools  | Description       |
 |---------------|-------------------|
 | g-wall        | Wallpaper Manager For Gatter Linux using Hsetroot (double click to view the wallpapaer)                      |
-| g-vol         | Volume icon Tray For Gatter Linux using Yad (click the volime icon tray to make dialog vanish)                |
-| g-welcome     | Welcome Screen for Gatter Linux (simple step by step welcome screen                                           |
+| g-vol         | Volume icon Tray For Gatter Linux using Yad                |
+| g-welcome     | Welcome Screen for Gatter Linux (simple step by step welcome screen )                                          |
 | g-settings    | Settings Dialog for Gatter Linux (multi tools to control Gatter Linux )                                       |
 | aptgate       | Terminal base Application Manager for Gatter Linux (don't need synaptic anymore )                             |
 | g-apps        | Application Menu for Gatter Linux using Rofi (simple rofi script to make a menu )                             |
 | g-exit        | Exit Dialog for Gatter Linux (log out, ShutDown, Reboot ... )                                                 |
 | g-gen         | Multi generator Tools in one place (password , mac addr ... )                                                 |
 | g-hash        | Give and compare 2 files hashs (take terminal command and make them better)                                   |
-| g-key         | Change keyboard layout (usr system tools only)                                                                |
+| g-key         | Change keyboard layout (use system tools only)                                                                |
 | g-rofi        | run command for Gatter Linux use `Alt+d` (simple rofi)                                                        |
 | gsu           | Permition Dialog for some applications (replacment of gsudo but keep the theme)                               |
 | g-time        | Change Time/Date and Timezone (use system tools only)                                                         |
@@ -116,6 +116,7 @@ Gatter Linux is Now on the Version (1.1) base on Ubuntu 18.04.1
 - Github Page Manager (zakaria "Gatter" Barkouk)
 - Gatter Linux System Files Tweaks and stuff (zakaria "Gatter" Barkouk)
 - Support Team (zakaria "Gatter" Barkouk)
+
 ... etc (zakaria "Gatter" Barkouk)
 
 - Is just one man work, so if you can support Gatter Linux **Financially** or Just Share it with your friend i'll be so happy 
