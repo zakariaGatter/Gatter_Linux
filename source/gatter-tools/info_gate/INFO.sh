@@ -1,6 +1,8 @@
 #! /usr/bin/gtkdialog -e
 
-[ "$(whoami)" != "root" ] && echo ' This APP Need Root Permition, USE "sudo" or "gsu" ' && exit 1
+#[ "$(whoami)" != "root" ] && echo ' This APP Need Root Permition, USE "sudo" or "gsu" ' && exit 1
+
+# hddtemp, hwinfo, xinput ; inxi 
 
 #--------------------#
 # Change Dialog Font #
@@ -130,7 +132,7 @@ export ABOUT='
 	</pixmap>
 	<text use-markup="true" justify="2">
 		<label>
-"Info Gate 0.1 :
+"Info Gate 0.2 :
 Information Displayer For Gatter Linux 
 
 Copyright (c) 2017" 
@@ -169,6 +171,14 @@ CPU_DIALOG='
 	</menuitem>
 	<menuitem label="Cpu Process" stock="gtk-info">
 		<action>mpstat -A > /tmp/info_gate.txt</action>
+		<action>refresh:INFO</action>
+	</menuitem>
+	<menuitem label="Kmod" stock="gtk-info">
+		<action>kmod list > /tmp/info_gate.txt</action>
+		<action>refresh:INFO</action>
+	</menuitem>
+	<menuitem label="PsTree" stock="gtk-info">
+		<action>pstree > /tmp/info_gate.txt</action>
 		<action>refresh:INFO</action>
 	</menuitem>
 </menu>
@@ -326,6 +336,14 @@ LOG_DIALOG='
 		<action>dmesg > /tmp/info_gate.txt</action>
 		<action>refresh:INFO</action>
 	</menuitem>
+	<menuitem label="Who" stock="gtk-info">
+		<action>w > /tmp/info_gate.txt</action>
+		<action>refresh:INFO</action>
+	</menuitem>
+	<menuitem label="Last" stock="gtk-info">
+		<action>last > /tmp/info_gate.txt</action>
+		<action>refresh:INFO</action>
+	</menuitem>
 </menu>
 '
 
@@ -360,6 +378,10 @@ DEVICES_DIALOG='
 		<action>upower -d > /tmp/info_gate.txt</action>
 		<action>refresh:INFO</action>
 	</menuitem>
+	<menuitem label="Biosdecode" stock="gtk-info">
+		<action>sudo biosdecode > /tmp/info_gate.txt</action>
+		<action>refresh:INFO</action>
+	</menuitem>
 </menu>
 '
 
@@ -390,6 +412,10 @@ NETWORK_DIALOG='
 	</menuitem>
 	<menuitem label="HOSTS" stock="gtk-info">
 		<action>(cat /etc/hosts) > /tmp/info_gate.txt</action>
+		<action>refresh:INFO</action>
+	</menuitem>
+	<menuitem label="Ss" stock="gtk-info">
+		<action>ss > /tmp/info_gate.txt</action>
 		<action>refresh:INFO</action>
 	</menuitem>
 </menu>
@@ -438,6 +464,10 @@ SYSTEM_DIALOG='
 	</menuitem>
 	<menuitem label="Computer ID" stock="gtk-info">
 		<action>sudo dmidecode > /tmp/info_gate.txt</action>
+		<action>refresh:INFO</action>
+	</menuitem>
+	<menuitem label="Locale Endocing" stock="gtk-info">
+		<action>luit -list > /tmp/info_gate.txt</action>
 		<action>refresh:INFO</action>
 	</menuitem>
 </menu>

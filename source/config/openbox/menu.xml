@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openbox_menu xmlns="http://openbox.org/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://openbox.org/                 file:///usr/share/openbox/menu.xsd">
+	<menu id="root-menu" label="Openbox 3">
+		<separator label="-- Gatter --"/>
+		<menu execute="openbox-menu lxde-applications.menu" id="applications-menu" label=" Applications"/>
+		<separator/>
+		<item label=" Terminal">
+			<action name="Execute">
+				<execute>x-terminal-emulator</execute>
+			</action>
+		</item>
+		<item label=" Web Browser">
+			<action name="Execute">
+				<execute>x-www-browser</execute>
+			</action>
+		</item>
+		<!-- This requires the presence of the 'menu' package to work -->
+		<item label=" File Manager">
+			<action name="Execute">
+				<execute>pcmanfm</execute>
+			</action>
+		</item>
+		<item label=" Text Editor">
+			<action name="Execute">
+				<execute>geany -i</execute>
+			</action>
+		</item>
+		<item label=" Media Player">
+			<action name="Execute">
+				<execute>vlc</execute>
+			</action>
+		</item>
+		<item label=" Wallpaper">
+			<action name="Execute">
+				<execute>g-wall</execute>
+			</action>
+		</item>
+		<separator/>
+		<!--menu id="client-list-menu" label="desk"/-->
+		<menu id="root-menu-15952" label=" Directory">
+			<menu execute="obm-dir ~/ pcmanfm" id="pipe-631046" label="Dirs"/>
+			<menu execute="obm-nav ~/ pcmanfm x-terminal-emulator" id="pipe-581045" label="Places"/>
+		</menu>
+		<separator/>
+		<menu id="root-menu-142414" label=" Configuration">
+			<menu id="root-menu-142414-34848" label="Bash">
+				<item label="Bashrc">
+					<action name="Execute">
+						<execute>geany -i ~/.bashrc</execute>
+					</action>
+				</item>
+				<item label="Profile">
+					<action name="Execute">
+						<execute>geany -i ~/.profile</execute>
+					</action>
+				</item>
+			</menu>
+			<menu id="root-menu-142414-70847" label="Gtk-2">
+				<item label="Gtkrc-2">
+					<action name="Execute">
+						<execute>geany -i ~/.gtkrc-2.0</execute>
+					</action>
+				</item>
+				<item label="File Chooser">
+					<action name="Execute">
+						<execute>geany -i ~/.config/gtk-2.0/gtkfilechooser.ini</execute>
+					</action>
+				</item>
+			</menu>
+			<menu id="root-menu-openbox" label="Openbox">
+				<item label="edit Menu">
+					<action name="Execute">
+						<execute>geany -i ~/.config/openbox/menu.xml</execute>
+					</action>
+				</item>
+				<item label="Edit RC">
+					<action name="Execute">
+						<execute>geany -i ~/.config/openbox/rc.xml</execute>
+					</action>
+				</item>
+			</menu>
+			<item label="Tint2 config">
+				<action name="Execute">
+					<execute>geany -i ~/.config/tint2/tint2rc</execute>
+				</action>
+			</item>
+			<item label="Rofi Theme">
+				<action name="Execute">
+					<execute>rofi-theme-selector</execute>
+				</action>
+			</item>
+			<separator/>
+			<item label="Restart">
+				<action name="Restart"/>
+			</item>
+			<item label="Reconfigure">
+				<action name="Reconfigure"/>
+			</item>
+		</menu>
+		<item label=" Gatter Tools">
+			<action name="Execute">
+				<execute>g-tools</execute>
+			</action>
+		</item>
+		<separator/>
+		<item label=" Exit">
+			<action name="Execute">
+				<execute>g-exit</execute>
+			</action>
+		</item>
+	</menu>
+</openbox_menu>

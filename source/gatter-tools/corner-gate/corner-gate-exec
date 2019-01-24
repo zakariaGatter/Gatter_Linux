@@ -1,0 +1,32 @@
+#!/bin/bash 
+
+CONF_FILE="$HOME/.config/corner-gaterc"
+
+while read X ; do
+	_TTrue=$(echo $X | awk '{print $1}') # + -
+	_TCmd=$(echo $X | awk -F = '{print $2}') # Cmd 
+	_TCor=$(echo $X | awk '{print $2}' | cut -d = -f1) # Corner
+	
+	[ "$_TTrue" = "+" ] && {
+		case "$TCor" in
+			"Top_Right" )
+				xdotool behave_screen_edge top-right \
+				exec "$_TCmd"
+			;;
+			"Top_Left" )
+				xdotool behave_screen_edge top-left \
+				exec "$_TCmd"
+			;;
+			"Bottom_Right" )
+				xdotool behave_screen_edge bottom-right \
+				exec "$_TCmd"
+			;;
+			"Bottom_Left" )
+				xdotool behave_screen_edge bottom-left \
+				exec "$_TCmd"
+			;;
+		esac
+	}
+	
+done < $CONF_FILE
+

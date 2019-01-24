@@ -1,10 +1,6 @@
 #! /usr/bin/gtkdialog -e
  
-export TEXTDOMAIN=hash-gate
-export OUTPUT_CHARSET=UTF-8
-
-[ ! -f /tmp/hash1 ] && touch /tmp/hash1
-[ ! -f /tmp/hash2 ] && touch /tmp/hash2
+:> /tmp/hash
 
 #---------#
 # SUCCESS #
@@ -20,11 +16,7 @@ export SUCCESS='
 <frame>
 	<text use-markup="true" justify="2">
 		<label>
-"<b>'"$FILE1"'</b> 
-and
-<b>'"$FILE2"'</b>
-
-Have the Same hash, they are maybe the same file "
+"They Have the Same hash, they are maybe the same file "
 		</label>
 	</text>
 </frame>
@@ -49,11 +41,7 @@ export ERROR='
 <frame>
 	<text use-markup="true" justify="2">
 		<label>
-"<b>'"$FILE1"'</b> 
-and
-<b>'"$FILE2"'</b>
-
-Havent the Same hash "
+"They Dont Have the Same hash "
 		</label>
 	</text>
 </frame>
@@ -152,12 +140,12 @@ Copyright (c) 2017"
 HASH ()
 {
 if [ "$CAL" = "true" -a -n "$FILE1" ];then 
-	($1 $FILE1 | awk '{print $1}') > /tmp/hash1
+	$1 $FILE1 > /tmp/hash
 fi
 
 if [ "$COM" = "true" -a -n "$FILE1" -a -n "$FILE2" ];then 
-	($1 $FILE1 | awk '{print $1}') > /tmp/hash1
-	($1 $FILE2 | awk '{print $1}') > /tmp/hash2
+	$1 $FILE1 > /tmp/hash
+	$1 $FILE2 >> /tmp/hash
 	
 	[ -z "$FILE1" -o -z "$FILE2" ] && return
 	
@@ -216,9 +204,12 @@ export SAVE_HASH='
 export MAIN_DIALOG='
 <window title="Hash Gate" position="1" icon-name="gtkhash" width-request="500">
 <vbox>
+	<pixmap>
+		<input file icon="hash-gate"></input>
+	</pixmap>
 	<text use-markup="true">
 		<label>
-			"<b><span font='"'Terminus Bold 16'"'>Hash</span>  <span font='"'Terminus Bold 16'"' color='"'#4E4E4E'"'>Gate</span></b>"
+			"<b><span font='"'Terminus Bold 12'"'>Hash Gate</span></b>"
 		</label>
 	</text>
 	<hbox>
@@ -234,10 +225,6 @@ export MAIN_DIALOG='
 					<action function="fileselect">FILE1</action>
 				</button>
 			</hbox>
-				<entry auto-refresh="true" editable="false">
-					<input file>/tmp/hash1</input>
-					<variable>OUT1</variable>
-				</entry>
 			<hseparator height-request="5"></hseparator>
 			<text><label> Second File :</label></text>
 			<hbox>
@@ -252,11 +239,6 @@ export MAIN_DIALOG='
 					<sensitive>false</sensitive>
 				</button>
 			</hbox>
-				<entry auto-refresh="true">
-					<input file>/tmp/hash2</input>
-					<variable>OUT2</variable>
-					<sensitive>false</sensitive>
-				</entry>
 			<hseparator height-request="5"></hseparator>
 			<hbox homogeneous="true">
 				<radiobutton tooltip-text="Calculate hash for one File">
@@ -271,8 +253,6 @@ export MAIN_DIALOG='
 					<action>if true enable:FILE2</action>
 					<action>if false disable:FFILE2</action>
 					<action>if true enable:FFILE2</action>
-					<action>if false disable:OUT2</action>
-					<action>if true enable:OUT2</action>
 				</radiobutton>
 			</hbox>
 			<hseparator height-request="5"></hseparator>
@@ -282,69 +262,85 @@ export MAIN_DIALOG='
 					<input file stock="gtk-save"></input>
 					<action>gtkdialog -c --program=SAVE_HASH &</action>
 				</button>
-				<button width-request="100">
+				<button width-request="120">
 					<label> Clear </label>
 					<input file stock="gtk-clear"></input>
-					<action>echo > /tmp/hash1</action>
-					<action>echo > /tmp/hash2</action>
+					<action>echo > /tmp/hash</action>
 				</button>
 			</hbox>
 		</frame>
+		</hbox>
 		<frame>
-		<button width-request="80" tooltip-text="Calculate hash with sha1 " homogeneous="true">
+		<hbox homogeneous="true">
+		<button width-request="120" tooltip-text="Calculate hash with sha1 ">
 			<input file stock="gtk-execute"></input>
-			<label>"SHA1    "</label>
+			<label>"SHA1"</label>
 			<action>HASH '"sha1sum"' &</action>
-			<action>refresh:OUT1</action>
-			<action>refresh:OUT2</action>
+			<action>refresh:OUT</action>
 		</button>
-		<button width-request="80" tooltip-text="Calculate hash with sha2 24 bit " homogeneous="true">
+		<button width-request="120" tooltip-text="Calculate hash with sha2 24 bit ">
 			<input file stock="gtk-execute"></input>
 			<label>SHA2 24</label>
 			<action>HASH '"sha224sum"' &</action>
-			<action>refresh:OUT1</action>
-			<action>refresh:OUT2</action>
+			<action>refresh:OUT</action>
 		</button>
-		<button width-request="80" tooltip-text="Calculate hash with sha2 56 bit " homogeneous="true">
+		<button width-request="120" tooltip-text="Calculate hash with sha2 56 bit ">
 			<input file stock="gtk-execute"></input>
 			<label>SHA2 56</label>
 			<action>HASH '"sha256sum"' &</action>
-			<action>refresh:OUT1</action>
-			<action>refresh:OUT2</action>
+			<action>refresh:OUT</action>
 		</button>
-		<button width-request="80" tooltip-text="Calculate hash with sha3 84 bit " homogeneous="true">
+		</hbox>
+		<hbox homogeneous="true">
+		<button width-request="120" tooltip-text="Calculate hash with sha3 84 bit ">
 			<input file stock="gtk-execute"></input>
 			<label>SHA3 84</label>
 			<action>HASH '"sha384sum"' &</action>
-			<action>refresh:OUT1</action>
-			<action>refresh:OUT2</action>
+			<action>refresh:OUT</action>
 		</button>
-		<button width-request="80" tooltip-text="Calculate hash with sha5 12 bit " homogeneous="true">
+		<button width-request="120" tooltip-text="Calculate hash with sha5 12 bit ">
 			<input file stock="gtk-execute"></input>
 			<label>SHA5 12</label>
 			<action>HASH '"sha512sum"' &</action>
-			<action>refresh:OUT1</action>
-			<action>refresh:OUT2</action>
+			<action>refresh:OUT</action>
 		</button>
-		<button width-request="80" tooltip-text="Calculate hash with md5 " homogeneous="true">
+		<button width-request="120" tooltip-text="Calculate hash with md5 ">
 			<input file stock="gtk-execute"></input>
-			<label>"MD5     "</label>
+			<label>"MD5"</label>
 			<action>HASH '"md5sum"' &</action>
-			<action>refresh:OUT1</action>
-			<action>refresh:OUT2</action>
+			<action>refresh:OUT</action>
 		</button>
-		<hseparator height-request="5"></hseparator>
-			<button width-request="80">
+		</hbox>
+		<hbox homogeneous="true">
+		<button width-request="120" tooltip-text="Calculate hash with Sum ">
+			<input file stock="gtk-execute"></input>
+			<label>"SUM"</label>
+			<action>HASH '"sum"' &</action>
+			<action>refresh:OUT</action>
+		</button>
+		<button width-request="120" tooltip-text="Calculate hash with Cksum ">
+			<input file stock="gtk-execute"></input>
+			<label>"CKSUM"</label>
+			<action>HASH '"cksum"' &</action>
+			<action>refresh:OUT</action>
+		</button>
+		</hbox>
+		</frame>
+		<edit editable="false" auto-refresh="true">
+			<variable>OUT</variable>
+			<input file>/tmp/hash</input>
+		</edit>
+		<hbox homogeneous="true">
+			<button width-request="120">
 				<input file stock="gtk-about"></input>
 				<label>About</label>
 				<action>gtkdialog -c --program=ABOUT</action>
 			</button>
-			<button width-request="80">
+			<button width-request="120">
 				<input file stock="gtk-cancel"></input>
 				<label>Cancel</label>
 			</button>
-		</frame>
-	</hbox>
+		</hbox>
 </vbox>
 </window>
 '

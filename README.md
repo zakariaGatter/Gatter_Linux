@@ -9,10 +9,14 @@
 ## Contents
 - [Intro](#intro)
 - [ScreenShots](#screenshots)
+- [Download](#download)
 - [Applications](#applications)
 - [Gatter Tools](#gatter_tools)
 - [Shortcuts](#shortcuts)
+- [Issues](https://github.com/zakariaGatter/Gatter_Linux/issues)
+- [Log](#log)
 - [Donate](#donate)
+- [Working Team](#working_team)
 
 ## Intro 
 - Gatte Linux is a GNU/Linux Distribution base on ubuntu LTS 18.04.1
@@ -29,6 +33,11 @@
     <img width="400" src="pics/inaction.png">
 </div>
 
+## Downaload 
+
+Gatter Linux is Now on the Version (1.1) base on Ubuntu 18.04.1 
+- You can download Gatter Linux from [Sourcefourg](https://sourceforge.net/projects/gatter-linux/)
+
 ## Applications 
 
 - [Openbox Window Manager](http://www.openbox.org) : standards-compliant, fast, light-weight and extensible window manager
@@ -36,7 +45,7 @@
 - [Chromium Browser](https://chromium.googlesource.com/chromium/src/) : Chromium web browser, open-source version of Chrome
 - [PcmanFm](http://pcmanfm.sourceforge.net/) : extremely fast and lightweight file manager
 - [Geany](http://www.geany.org) : Geany is a small and lightweight integrated development environment.
-- [vim](https://vim.sourceforge.io/) : Vim is an almost compatible version of the UNIX editor Vi. 
+- [nvim](https://neovim.io) : Neovim is a fork of Vim focused on modern code and features, rather than running in legacy environments.
 - [xarchiver](https://github.com/ib/xarchiver) : Xarchiver is a lightweight desktop independent GTK+ frontend for manipulating
 - [gpicview](http://www.lxde.org/) : GPicView is a lightweight GTK+ 2.x based image viewer
 - [gparted](http://gparted.sourceforge.net) : GNOME partition editor
@@ -47,8 +56,9 @@
 ... and others 
 
 ## Gatter_Tools
-+---------------+---------------------------------------------------------------------------------------------------------------+
-| g-wall        |  Wallpaper Manager For Gatter Linux using Hsetroot (double click to view the wallpapaer)                      |
+| Gatter Tools  | Description       |
+|---------------|-------------------|
+| g-wall        | Wallpaper Manager For Gatter Linux using Hsetroot (double click to view the wallpapaer)                      |
 | g-vol         | Volume icon Tray For Gatter Linux using Yad (click the volime icon tray to make dialog vanish)                |
 | g-welcome     | Welcome Screen for Gatter Linux (simple step by step welcome screen                                           |
 | g-settings    | Settings Dialog for Gatter Linux (multi tools to control Gatter Linux )                                       |
@@ -64,27 +74,50 @@
 | info-gate     | System Information for Gatter Linux (give you all information you need to know about your system and more)    |
 | screen-gate   | ScreenShot application for Gatter Linux (Take scrot and give it a graphic interface)                          |
 | usb-gate      | Usb Manager For Gatter Linux (Script to format and create a bootable usb stick)                               |
-+---------------+---------------------------------------------------------------------------------------------------------------+
+
 ## Shortcuts
 
-- `Ctrl+Alt+left`   - Go to Left Desktop
-- `Ctrl+Alt+right`  - Go to Right Desktop
-- `Alt+Shift+left`  - Send to Left Desktop
-- `Alt+Shift+right` - Send to Right Desktop
-- `Super+d`         - Show Desktop
-- `Alt+F4`          - Close Widnow
-- `Alt+Space`       - show Client Window Menu
-- `Alt+Tab`         - Switch to next window
-- `Ctrl+Alt+t`      - Terminal Emilator
-- `Alt+b`           - Web Browser
-- `Alt+h`           - File Manager
-- `Alt+e`           - Text Editor 
-- `Alt+w`           - Wallpaper Manager
-- `Alt+d`           - command dialog
-- `Alt+q`           - Close Widnow
-- `Alt+Shift+q`     - Exit Dialog 
+| Key Bind          | Action
+|-------------------|------------------
+| `Ctrl+Alt+left`   | Go to Left Desktop
+| `Ctrl+Alt+right`  | Go to Right Desktop
+| `Alt+Shift+left`  | Send to Left Desktop
+| `Alt+Shift+right` | Send to Right Desktop
+| `Super+d`         | Show Desktop
+| `Alt+F4`          | Close Widnow
+| `Alt+Space`       | show Client Window Menu
+| `Alt+Tab`         | Switch to next window
+| `Ctrl+Alt+t`      | Terminal Emilator
+| `Alt+b`           | Web Browser
+| `Alt+h`           | File Manager
+| `Alt+e`           | Text Editor 
+| `Alt+w`           | Wallpaper Manager
+| `Alt+d`           | command dialog
+| `Alt+q`           | Close Widnow
+| `Alt+Shift+q`     | Exit Dialog 
+
+## Log 
+
+- Fix some AptGate issues 
+- Improve g-cal and g-vol 
+- Improve Openbox menu (with icons)
+- Make Gatter Linux a bit smaller 
+- New theme, New Wallpaper, New Icons 
 
 ## Donate
 
 - [PayPal](https://www.paypal.me/ZGatter/10)
 - [Patreon](https://www.patreon.com/user?u=16191162)
+
+## Working_Team
+
+- Gatter Tools Creater (zakaria "Gatter" Barkouk)
+- Web Site Manager (zakaria "Gatter" Barkouk)
+- Github Page Manager (zakaria "Gatter" Barkouk)
+- Gatter Linux System Files Tweaks and stuff (zakaria "Gatter" Barkouk)
+- Support Team (zakaria "Gatter" Barkouk)
+... etc (zakaria "Gatter" Barkouk)
+
+- Is just one man work, so if you can support Gatter Linux **Financially** or Just Share it with your friend i'll be so happy 
+
+[ Thank You For Using Gatter Linux ](https://zakariagatter.wixsite.com/gatter-linux)

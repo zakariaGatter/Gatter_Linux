@@ -1,0 +1,4 @@
++ Top_Right=/usr/bin/acpi
++ Top_Left=/usr/bin/addr2line
+  Bottom_Right=/usr/bin/411toppm
++ Bottom_Left=/usr/bin/ab

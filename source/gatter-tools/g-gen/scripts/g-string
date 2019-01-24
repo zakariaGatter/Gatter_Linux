@@ -1,0 +1,66 @@
+#!/bin/bash 
+
+S_G_USAGE () {
+echo "
+    String Generate (17-05-2018)
+    Written by Zakaria Barkouk (zakaria.gatter@gmail.com)
+
+    Generate a random String 
+
+    string_gen [OPT] [LINES] [COLUMNS]
+
+OPTS :
+    
+    +--------+---------+
+    | OPTION | INCLUDE |
+    +--------+---------+
+    |Number  | [0-9]   |
+    |Lower   | [a-z]   |
+    |Upper   | [A-Z]   |
+    |ALL     | All     |
+    +--------+---------+
+
+EXAMPLE :   srting_gen number 10 5
+
+"
+}
+
+case "$1" in 
+    "lower" )
+        G_CHAR=$(echo {a..z})
+        ;;
+    "upper" )
+        G_CHAR=$(echo {A..Z})
+        ;;
+    "number" )
+        G_CHAR=$(echo {0..9})
+        ;;
+    "all" )
+        G_CHAR=$(echo {A..Z} && echo {a..z} && echo {0..9})
+        ;;
+    "help" )
+        S_G_USAGE
+        exit 0
+        ;;
+        * )
+            echo -e "Incorrect argument(s) specified, please see help for more in formation"
+            exit 2
+        ;;
+esac
+
+G_LINES="$2"
+
+while true ; do 
+
+    for (( i="$3" ; i>0 ; i-- ));do 
+        G_GEN+=$(echo $G_CHAR | tr " " "\n" | shuf -n1)
+    done 
+
+    echo $G_GEN
+
+    G_GEN=""
+
+    G_LINES=$(( $G_LINES - 1 ))
+
+    [ "$G_LINES" -eq 0 ] && break 
+done 

@@ -1,0 +1,43 @@
+#!/bin/bash 
+
+_VERSION_="21-04-2018"
+
+USAGE () {
+echo -e "
+        BACKWORD ($_VERSION_)
+        Written by Zakaria Barkouk (zakaria.gatter@gmail.com)
+
+        Take a text and output it backword  .
+SYNTAX:     backword  [TEXT] 
+
+OPTS:       
+        +-------+---------------------+
+        | OPTS  | WHAT IT'S INCLUDE   |
+        +-------+---------------------+
+        | help  | See this MSG        |
+        +-------+---------------------+
+
+EXAMPLE :   backword this is a example 
+OUTPUT  :   elpmaxe a si siht
+"
+exit 0
+}
+
+[ "$1" = "help" -a "$#" = 1 ] && USAGE
+
+# Read all entry word by word
+echo $@ | while read WORD ;do
+    
+    # Calculus how much char in this word 
+    TN=$(echo $WORD | wc -c )
+
+    # loop to back the word 
+    while true ; do
+        _THE_WORD+=$(echo "${WORD:$TN:1}")
+        TN=$(( $TN - 1 ))
+        [ "$TN" -lt 0 ] && break
+    done
+
+    # echo the result -n to show in the same line 
+    echo -n $_THE_WORD
+done

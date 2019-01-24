@@ -1,0 +1,113 @@
+#!/bin/bash 
+
+cmd=$*
+
+sudo_check_if_passwd_needed=$(sudo -H -S -- $cmd 2>&1 &)
+if [[ "$(echo "$sudo_check_if_passwd_needed" | grep -o "\[sudo\] password for $USER")" != "[sudo] password for $USER" ]]; then
+sudo -K
+exit 1
+fi
+
+export PASSWORD_DIALOG='
+<window title=" Password Dialog" width-request="300" icon-name="dialog-password" resizable="false">
+<vbox>
+	<pixmap>
+		<width>48</width>
+		<height>48</height>
+		<input file icon="dialog-password"></input>
+	</pixmap>
+	<frame>
+		<text use-markup="true"><label>"<span font='"'terminus 10'"'> Enter Password for <b>'"$USER"'</b></span>"</label></text>
+		<entry visibility="false" activates_default="true">
+			<variable>pass</variable>
+		</entry>
+	</frame>
+	<hbox>
+		<button width-request="100" can-default="true" has-default="true" use-stock="true">
+			<input file stock="gtk-ok"></input>
+			<label>Ok</label>
+			<action>EXIT:OK</action>
+		</button>
+		<button width-request="100">
+			<input file stock="gtk-cancel"></input>
+			<label>Cancel</label>
+			<action>EXIT:EXIT</action>
+		</button>
+	</hbox>
+</vbox>
+</window>'
+
+I=$IFS; IFS="" 
+for STATEMENTS in $(gtkdialog -c --program=PASSWORD_DIALOG); do 
+	eval $STATEMENTS 
+done 
+IFS=$I
+
+[[ "$EXIT" = "EXIT" ]] && exit 1
+if [[ -z "$pass" ]]; then
+
+echo '<window title=" Incorrect Password" icon-name="gtk-dialog-error" resizable="false">
+<vbox>
+	<pixmap>
+		<width>48</width>
+		<height>48</height>
+		<input file icon="gtk-dialog-error"></input>
+	</pixmap>
+	<frame>
+	<text use-markup="true" justify="2">
+		<label>"<span font='"'terminus 10'"'> Sorry, incorrect password. Please try again. </span>"</label>
+	</text>
+	</frame>
+	<hbox><button cancel></button></hbox>
+</vbox>
+</window>' | gtkdialog -c -s
+
+exec ${0} $cmd
+fi
+
+echo "$pass" | sudo  -k -S -p "" -E true
+ret=$?
+if [ $ret -ne 0 ]; then
+
+echo '<window title=" Incorrect Password" icon-name="gtk-dialog-error" resizable="false">
+<vbox>
+	<pixmap>
+		<width>48</width>
+		<height>48</height>
+		<input file icon="gtk-dialog-error"></input>
+	</pixmap>
+	<frame>
+	<text use-markup="true" justify="2">
+		<label>"<span font='"'terminus 10'"'> Sorry, incorrect password. Please try again. </span>"</label>
+	</text>
+	</frame>
+	<hbox><button cancel></button></hbox>
+</vbox>
+</window>' | gtkdialog -c -s
+
+exec ${0} $cmd
+fi
+
+echo "$pass" | sudo -S env LD_LIBRARY_PATH=/opt/lib:/usr/local/lib sh -c "$cmd"
+ret=$?
+echo $ret
+if [ $ret = 127 ]; then
+echo '<window title=" Incorrect Password" icon-name="gtk-dialog-error" resizable="false">
+<vbox>
+	<pixmap>
+		<width>48</width>
+		<height>48</height>
+		<input file icon="gtk-dialog-error"></input>
+	</pixmap>
+	<frame>
+	<text use-markup="true" justify="2">
+		<label>"<span font='"'terminus 10'"'> Sorry, could not find: '"$cmd"'. Please try again. </span>"</label>
+	</text>
+	</frame>
+	<hbox><button cancel></button></hbox>
+</vbox>
+</window>' | gtkdialog -c -s
+
+fi
+sudo -K
+exit $?

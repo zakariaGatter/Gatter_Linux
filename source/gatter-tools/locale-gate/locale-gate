@@ -1,0 +1,94 @@
+#!/bin/bash 
+
+#-----------------#
+# Reboot Function #
+#-----------------#
+export REBOOT_DIALOG='
+<window title=" System Reboot" icon-name="gnome-logout" resizable="false">
+<vbox>
+	<pixmap>
+		<width>48</width>
+		<height>48</height>
+		<input file icon="gnome-logout"></input>
+	</pixmap>
+	<frame>
+		<text use-markup="true" justify="2">
+			<label>
+"<span font='"'Terminus 11'"'> Your Settings Will take effect Next boot.
+Do You want to Reboot Your System ? </span>"
+			</label>
+		</text>
+	</frame>
+	<hbox homogeneous="true">
+		<button width-request="100"><label>Reboot</label><input file icon="system-reboot"></input><action>reboot</action></button>
+		<button width-request="100"><label>Cancel</label><input file stock="gtk-cancel"></input><action>EXIT:CANCEL</action></button>
+	</hbox>
+</vbox>
+</window>'
+
+LIST_LOCALES() {
+localectl list-locales | while read L ; do 
+	echo "<item>$L</item>"
+done
+}
+
+LIST_VARIABLES() {
+(echo "- NONE -" && awk '/^# .*UTF-8$/{print $2" "$3}' /etc/locale.gen) | while read V ; do 
+echo "<item>$V</item>"
+done
+}
+
+function _GEN_LOCATE_() {
+sudo sed -i "s/# $S_VARIABLES/$S_VARIABLES/g" /etc/locale.gen
+sudo locale-gen
+}
+
+export LOCAL_DIALOG='
+<window title="Locale Setup Gate" icon-name="preferences-desktop-locale" resizable="false">
+<vbox>
+	<pixmap>
+		<width>48</width>
+		<height>48</height>
+		<input file icon="preferences-desktop-locale"></input>
+	</pixmap>
+	<text use-markup="true" justify="2">
+		<label>
+			"<span font='"'Terminus 11'"'>Change System Locale (Language) with List of all avariable Locales exist on the system </span>"
+		</label>
+	</text>
+	<frame>
+	<text use-markup="true" justify="2"><label>"<span font='"'Terminus 11'"'> Install System Locale (Language) : </span>"</label></text>
+	<hbox homogeneous="true">
+		<text use-markup="true" justify="2"><label>"<span font='"'Terminus 11'"'> Variable Locales on System Is : </span>"</label></text>
+		<comboboxtext width-request="200">
+			<variable>S_VARIABLES</variable>
+			'"$(LIST_VARIABLES)"'
+		</comboboxtext>
+	</hbox>
+	<hbox homogeneous="true">
+		<button width-request="130"><label>Generate Local</label><input file stock="gtk-execute"></input><action>x-terminal-emulator -e "sudo sed -i \"s/# $S_VARIABLES/$S_VARIABLES/g\" /etc/locale.gen && sudo locale-gen"</action></button>
+	</hbox>
+	</frame>
+	<frame>
+	<text use-markup="true" justify="2"><label>"<span font='"'Terminus 11'"'> Change System Locale (Language) : </span>"</label></text>
+	<hbox homogeneous="true">
+		<text use-markup="true" justify="2"><label>"<span font='"'Terminus 11'"'> Current Locale Is : </span>"</label></text>
+		<comboboxtext width-request="200">
+			<variable>S_LOCALE</variable>
+			<default>'"$LANG"'</default>
+			'"$(LIST_LOCALES)"'
+		</comboboxtext>
+	</hbox>
+	<hbox homogeneous="true">
+		<button width-request="130"><label>Set Local</label><input file stock="gtk-execute"></input><action>ls</action></button>
+	</hbox>
+	</frame>
+	<hbox homogeneous="true">
+		<button width-request="130"><label>Use Dpkg</label><input file stock="gtk-execute"></input><action>x-terminal-emulator -e "sudo dpkg-reconfigure locales"</action></button>
+		<button width-request="130"><label>Reboot</label><input file icon="system-reboot"></input><action>gtkdialog -c -p REBOOT_DIALOG</action></button>
+		<button width-request="100"><label>Cancel</label><input file stock="gtk-cancel"></input><action>EXIT:CANCEL</action></button>
+    </hbox>
+</vbox>
+</window>'
+
+gtkdialog -c -p LOCAL_DIALOG

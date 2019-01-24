@@ -223,11 +223,15 @@ while true ; do
         if [ "$remove_pkg" = "Back" -o -z "$remove_pkg" ];then
             break
         else
-            echo -e "${BBlue} -->\n${BRed} $remove_pkg \n${BWhite} Will be Remove from The System ${Off} "
+            clear
+            echo -e "${BBlue} --> "
+            echo -e "${BRed} $remove_pkg" | tr "\n" " "
+            echo -e "${BWhite} Will be Remove from The System ${Off} "
             print_line
             sudo apt remove $remove_pkg
             pause_func
         fi
+break
 done
 }
 
@@ -273,6 +277,7 @@ done
 _INS_DEB_() {
 Deb_file=$(cd $HOME && yad --file --title="Deb File Select" --window-icon="AptGate" --width=600 --height=450 --file-filter="*.deb" --multiple)
 print_title " Install Deb Package "
+if [ -n "$Deb_file" ];then 
     echo -e "\t${BCyan} --> :${BGreen}  $Deb_file "
     echo -e "\t\t${BWhite} Will Be Install ${Off}"
 print_line
@@ -283,6 +288,9 @@ print_line
 print_line
     echo -e "${BCyan} --> : ${BWhite}Reinstall Deb Package ${Off}"
     sudo dpkg -i "$Deb_file"
+else
+    echo -e "${BWhite} No Deb File Selected  ${Off}"
+fi 
 pause_func
 }
 
@@ -296,10 +304,12 @@ echo -e "${BBlue} -->${BWhite} Enable multi-select with${BPurple} <tab>${BWhite}
 echo -e "${BBlue} -->${BWhite} Choose${BRed} \"Back\"${BWhite} To Return To Main Menu  ${Off}"
 pause_func
 install_pkg=$(echo -e "$(apt-cache pkgnames | sort) \nBack" | "$_FZF_" -e -m --prompt="Select Package to Install :>: " --reverse --color=16)
+_install_pkg_=$(echo $install_pkg | tr "\n" " ")
 if [ "$install_pkg" = "Back"  -o -z "$install_pkg" ];then
     break
 else
-    Install_Func "$install_pkg"
+    Install_Func $( echo "$_install_pkg_")
+    break
 fi
 done
 }

@@ -1,0 +1,191 @@
+#!/usr/bin/gtkdialog -e
+
+:> /tmp/diff-gate
+
+MSG_DIALOG() {
+echo '
+<window title="Message Box" icon-name="'"${1}"'">
+<vbox>
+<pixmap><width>48</width><input file stock="'"${1}"'"></input></pixmap>
+<text use-markup="true"><label>"<span font='"'Terminus Bold 12'"'>Diff Gate</span>"</label></text>
+<frame>
+<text use-markup="true"><label>"<span font='"'Terminus 12'"'>'"${2}"'</span>"</label></text>
+</frame>
+<hbox><button cancel></button></hbox>
+</vbox>
+</window>' | gtkdialog -s
+}
+
+VIEW_DIALOG() {
+echo '
+<window title="View Box" icon-name="diff-gate">
+<vbox>
+<pixmap><width>48</width><input file stock="diff-gate"></input></pixmap>
+<text use-markup="true"><label>"<span font='"'Terminus Bold 12'"'>Diff Gate</span>"</label></text>
+<edit editable="false" cursor-visible="false">
+	<input file>/tmp/diff-gate</input>
+	<height>400</height>
+	<width>600</width>
+</edit>
+<hbox><button cancel></button></hbox>
+</vbox>
+</window>' | gtkdialog -s
+}
+
+DIFF_EXEC() {
+if [ -z "$FILE1" -o -z "$FILE2" ];then 
+	MSG_DIALOG "gtk-no" "You need to select two files to Diff them "
+else
+	diff -p "$FILE1" "$FILE2" > /tmp/diff-gate
+	
+	if diff "$FILE1" "$FILE2" ; then 
+		MSG_DIALOG "gtk-yes" "This Two files Are the same"
+	else
+		if grep "^Binary files" /tmp/diff-gate > /dev/null ; then 
+			MSG_DIALOG "gtk-no" "$(cat /tmp/diff-gate)"
+		else
+			MSG_DIALOG "gtk-no" "There some different in those Two Files"
+		fi
+	fi
+fi
+}
+
+#---------#
+# LICENSE #
+#---------#
+export LICENSE_DIALOG='
+<window title="License" resizable="false" icon-name="gtk-info" width-request="550" height-request="250">
+<vbox>
+	<edit editable="false">
+		<default>
+"
+Diff Gate is free software: you can redistribute it and/or modify
+it under the terms of the GNU Lesser General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+ is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public License
+along with .  If not, see <http://www.gnu.org/licenses/>.
+"
+		</default>
+	</edit>
+</vbox>
+</window>
+'
+
+#---------#
+# CREDITS #
+#---------#
+export CREDITS_DIALOG='
+<window title="Credits" resizable="false" icon-name="gtk-info" width-request="350">
+<vbox>
+	<edit editable="false">
+		<default>
+"
+Zakaria Barkouk <zakaria.gatter@gmail.com>
+"
+		</default>
+	</edit>
+</vbox>
+</window>
+'
+
+#-------#
+# ABOUT #
+#-------#
+export ABOUT='
+<window title="About" icon-name="gtk-about" resizable="false">
+<vbox>
+	<pixmap>
+		<width>64</width>
+		<height>64</height>
+		<input file icon="diff-gate"></input>
+	</pixmap>
+	<text use-markup="true" justify="2">
+		<label>
+"Diff Gate 0.1 :
+Diff Manager For Gatter Linux 
+
+Copyright (c) 2019" 
+		</label>
+	</text>
+	<hbox homogeneous="true">
+		<button width-request="100">
+			<label> License </label>
+			<action>gtkdialog -c --program=LICENSE_DIALOG</action>
+		</button>
+		<button width-request="100">
+			<label> Credits </label>
+			<action>gtkdialog -c --program=CREDITS_DIALOG</action>
+		</button>
+		<button width-request="100">
+			<label> Cancel </label>
+			<action>EXIT:Cancel</action>
+		</button>
+	</hbox>
+</vbox>
+</window>
+'
+
+export MAIN_DIALOG='
+<window title="Diff Gate" icon-name="diff-gate">
+<vbox>
+	<pixmap>
+		<width>48</width>
+		<input file icon="diff-gate"></input>
+	</pixmap>
+	<text use-markup="true">
+	<label>"<span font='"'Terminus Bold 12'"'>Diff Gate</span>"</label>
+	</text>
+	<frame>
+		<text use-markup="true"><label>"<span font='"'Terminus Bold 12'"'>First File</span>"</label></text>
+		<hbox>
+			<entry editable="false">
+				<variable>FILE1</variable>
+			</entry>
+			<button>
+				<input file stock="gtk-open"></input>
+				<action function="fileselect">FILE1</action>
+			</button>
+		</hbox>
+	</frame>
+	<frame>
+		<text use-markup="true"><label>"<span font='"'Terminus Bold 12'"'>Second File</span>"</label></text>
+		<hbox>
+			<entry editable="false">
+				<variable>FILE2</variable>
+			</entry>
+			<button>
+				<input file stock="gtk-open"></input>
+				<action function="fileselect">FILE2</action>
+			</button>
+		</hbox>
+	</frame>
+	<hbox homogenous="true">
+		<button width-request="100">
+			<label>About</label>
+			<input file stock="gtk-about"></input>
+			<action>gtkdialog -c -p ABOUT</action>
+		</button>
+		<button width-request="100">
+			<label>Diff</label>
+			<input file stock="gtk-execute"></input>
+			<action>'"DIFF_EXEC"'</action>
+		</button>
+		<button width-request="100">
+			<label>View</label>
+			<input file stock="gtk-zoom-fit"></input>
+			<action>'"VIEW_DIALOG"'</action>
+		</button>
+		<button width-request="100">
+			<label>Cancel</label>
+			<input file stock="gtk-cancel"></input>
+		</button>
+	</hbox>
+</vbox>
+</window>'

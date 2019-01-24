@@ -1,0 +1,11 @@
+
+# Wallpaper Manager for Gatter Linux
+RENDER=Fill
+
+WALLPAPER=/home/gatter/Pictures/4c2wXS2.png
+
+COLOR=
+
+# the WALL SET is it a wallpaper or a color 
+SET=Wallpaper
+

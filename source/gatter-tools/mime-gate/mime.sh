@@ -2,8 +2,6 @@
 
 export MIME_FILE="/usr/share/applications/mimeinfo.cache"
 
-echo "" > /tmp/mime
-
 #---------#
 # LICENSE #
 #---------#

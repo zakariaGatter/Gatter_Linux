@@ -1,0 +1,50 @@
+#!/bin/bash 
+
+I_G_USAGE () {
+echo "
+    Integer Generate (17-05-2018)
+    Written by Zakaria Barkouk (zakaria.gatter@gmail.com)
+
+    Generate a random Integer
+
+    string_gen [BEGIN] [END] [NUMBER] [COLUMNS]
+
+OPTS :
+    
+    The random List start from [BEGIN] and end at [END]
+    [NUMBER] how many Random Number you want to see in Output
+    [COLUMNS] how many columns you want to see in Output 
+
+EXAMPLE :   integer_gen 1 100 12 5
+"
+exit 0
+}
+
+[ "$#" -lt "4" -o "$1" = "help" ] && I_G_USAGE
+
+F="$1"
+L="$2"
+N="$3"
+C="$4"
+
+IN_CHAR=$(for (( i=$L ; i>$F ; i-- ));do echo -n "$i "; done)
+
+NUM=$(( $N / $C ))
+L_NUM=$(( $N % $C ))
+
+for (( u=$NUM ; u>0 ; u-- ));do 
+    for (( i=$C ; i>0 ; i-- ));do 
+        IN_RES+="$(echo $IN_CHAR | tr " " "\n" | shuf -n1) "
+        IN_CHAR=$(echo $IN_CHAR | sed "s:$IN_RES::")
+    done 
+    
+    echo "$IN_RES" | tr " " "\t" 
+
+    IN_RES=""
+done
+
+[ -n "$L_NUM" ] && {
+    for (( g=$L_NUM ; g>0 ; g-- ));do 
+        echo -n "$(echo $IN_CHAR | tr " " "\n" | shuf -n1 ) " | tr " " "\t"
+    done 
+}

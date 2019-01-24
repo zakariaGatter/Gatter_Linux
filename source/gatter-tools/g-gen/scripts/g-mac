@@ -1,0 +1,32 @@
+#!/bin/bash 
+
+USAGE () {
+echo "
+    MAC Generate (17-05-2018)
+    Written by Zakaria Barkouk (zakaria.gatter@gmail.com)
+
+    Generate a random MAC Address
+
+OPTS :
+    help -  Show this help Dialog 
+
+"
+exit 0
+}
+
+CHAR=$(echo {A..Z}{1..9} ; echo {1..9}{A..Z})
+
+NUMBER=0
+
+[ "$1" = "help" -o -n "$1" ] && USAGE 
+
+while true ; do 
+
+    _MAC_GEN_+=$(echo $CHAR | tr " " "\n" | shuf -n1)
+
+    NUMBER=$(( $NUMBER + 1 ))
+
+    [ "$NUMBER" -eq 6 ] && break || _MAC_GEN_+=":"
+done 
+
+echo "$_MAC_GEN_"

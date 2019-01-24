@@ -41,8 +41,11 @@ echo "action:bash -c _VOL_CONTROL" >&3
 while true ; do 
 
 VOL=$(amixer get Master | awk '/Mono:/{gsub ("\\[|]|%",""); print $4}')
+MUTE=$(amixer get Master | awk '/Mono:/{gsub ("\\[|]",""); print $6}')
 
-if [ "$VOL" -gt "60" ] ;then
+if [ "$MUTE" = "off" ];then 
+	V_ICON="audio-volume-muted"
+elif [ "$VOL" -gt "60" ] ;then
 	V_ICON="audio-volume-high"
 elif [ "$VOL" -gt "20" ] ;then
 	V_ICON="audio-volume-medium"

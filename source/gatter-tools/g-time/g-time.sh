@@ -76,7 +76,11 @@ export MAIN_DIALOG='
 	<input file stock="gtk-execute"></input>
 	<label> Execute </label>
 	<action>SET_T_T_D &</action>
-	<action>EXIT:EXIT</action>
+</button>
+<button width-request="100">
+	<input file stock="gtk-execute"></input>
+	<label> use Dpkg </label>
+	<action>x-terminal-emulator -e "sudo dpkg-reconfigure tzdata" &</action>
 </button>
 <button width-request="100">
 	<input file stock="gtk-cancel"></input>
