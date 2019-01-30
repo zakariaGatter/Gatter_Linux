@@ -1,6 +1,6 @@
 #!/bin/bash 
 
-sudo echo "deb https://notesalexp.org/debian/bionic/ bionic main" >> /etc/apt/source.list
+echo "deb https://notesalexp.org/debian/bionic/ bionic main" | sudo tee /etc/apt/sources.list.d/notesalexp.list
 sudo apt-get install apt-transport-https
 sudo apt-get update -oAcquire::AllowInsecureRepositories=true
 sudo apt-get install notesalexp-keyring -oAcquire::AllowInsecureRepositories=true
