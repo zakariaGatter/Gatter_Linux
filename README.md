@@ -36,7 +36,7 @@
 ## Download 
 
 Gatter Linux is Now on the Version (1.1) base on Ubuntu 18.04.1 
-- You can download Gatter Linux from [Sourcefourg](https://sourceforge.net/projects/gatter-linux/)
+- You can download Gatter Linux from [Sourceforge](https://sourceforge.net/projects/gatter-linux/)
 
 ## Applications 
 
@@ -98,11 +98,12 @@ Gatter Linux is Now on the Version (1.1) base on Ubuntu 18.04.1
 
 ## Log 
 
-- Fix some AptGate issues 
-- Improve g-cal and g-vol 
-- Improve Openbox menu (with icons)
-- Make Gatter Linux a bit smaller 
-- New theme, New Wallpaper, New Icons 
+- Gatter Linux 1.1
+    - Fix some AptGate issues 
+    - Improve g-cal and g-vol 
+    - Improve Openbox menu (with icons)
+    - Make Gatter Linux a bit smaller 
+    - New theme, New Wallpaper, New Icons 
 
 ## Donate
 

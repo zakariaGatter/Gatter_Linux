@@ -1,0 +1,8 @@
+#!/bin/bash 
+if [ "$1" = "-d" ] ;then 
+	bash -c "$HOME/.local/share/auto-gate/func exec"
+elif [ "$1" = "-h" -o "$1" = "--help" ];then
+	bash -c "$HOME/.local/share/auto-gate/auto.sh -h"
+else
+	bash -c "$HOME/.local/share/auto-gate/auto.sh"
+fi

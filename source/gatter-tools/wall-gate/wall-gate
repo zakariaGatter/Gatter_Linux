@@ -1,0 +1,149 @@
+#!/usr/bin/gtkdialog -e
+
+rm /tmp/wall-gate*
+
+WALL_CONF="$HOME/.config/wall-gaterc"
+
+if [ ! -f "$WALL_CONF" ];then 
+echo "
+# Wallpaper Manager for Gatter Linux
+RENDER=Center
+
+WALLPAPER=~
+
+COLOR=
+
+# the WALL SET is it a wallpaper or a color 
+SET=Wallpaper
+" > $WALL_CONF
+fi
+
+_WALL_=$(awk -F = '/^WALLPAPER/{print $2}' $WALL_CONF)
+WALL_DIR=$(dirname "$_WALL_")
+WALL_COLOR=$(awk -F = '/^COLOR/{print $2}' $WALL_CONF)
+WALL_RENDER=$(awk -F = '/^RENDER/{print $2}' $WALL_CONF)
+WALL_SET=$(awk -F = '/^SET/{print $2}' $WALL_CONF)
+
+cp "$_WALL_" /tmp/wall-gate
+echo "$WALL_COLOR" > /tmp/wall-gate-c
+echo "$_WALL_" > /tmp/wall-gate-f
+
+if [ "$WALL_SET" = "Wallpaper" ];then 
+	R_C_B="false"
+	R_W_B="true"
+else
+	R_W_B="false"
+	R_C_B="true"
+fi
+
+_PICK_WALL_() {
+cd $WALL_DIR
+_P_W_=$(yad --title="Wallpaper Gate" --window-icon="wall-gate" --width=900 --file-selection --add-preview --file-filter="*.png *.jpg")
+if [ -n "$_P_W_" ];then
+	echo "$_P_W_" > /tmp/wall-gate-f
+	cp "$_P_W_" /tmp/wall-gate
+fi
+}
+
+_PICK_COLOR_() {
+_P_C_=$(yad --title="Pick a Color" --window-icon="gtk-color-picker" --color --init-color=$WALL_COLOR)
+if [ -n "$_P_C_" ];then
+	echo "$_P_C_" > /tmp/wall-gate-c
+fi
+}
+
+_SET_WALLPAPER_() {
+if [ "$_WALL_RAD" = "true" ]; then 
+	sed -i "s:WALLPAPER=$_WALL_:WALLPAPER=$_E_W_:g" $WALL_CONF
+	sed -i "s:RENDER=$WALL_RENDER:RENDER=$_RENDER_:g" $WALL_CONF
+	sed -i "s:SET=$WALL_SET:SET=Wallpaper:g" $WALL_CONF
+elif [ "$_WALL_RAD" = "false" ];then 
+	sed -i "s:COLOR=$WALL_COLOR:COLOR=$_E_C_:g" $WALL_CONF
+	sed -i "s:SET=$WALL_SET:SET=Color:g" $WALL_CONF
+fi
+
+wall-gate-exec
+
+}
+
+export MAIN_DIALOG='
+<window title="Wallpaper Gate" icon-name="wall-gate" resizable="false">
+<vbox>
+<pixmap auto-refresh="true">
+	<width>400</width>
+	<input file>/tmp/wall-gate</input>
+</pixmap>
+	<frame>
+	<hbox homogeneous="true">
+    <radiobutton>
+        <label>Set Wallpaper</label>
+        <default>'"$R_W_B"'</default>
+        <variable>_WALL_RAD</variable>
+    </radiobutton>
+    <radiobutton>
+        <label>Set Color</label>
+        <default>'"$R_C_B"'</default>
+		<variable>_COLOR_RAD</variable>
+    </radiobutton>
+    </hbox>
+    </frame>
+<hbox homogeneous="true">
+	<vbox>
+    <frame>
+    <text>
+        <label>"Wallpaper Render"</label>
+    </text>
+    <comboboxtext>
+		<default>'"$WALL_RENDER"'</default>
+        <item>Center</item>
+        <item>Cover</item>
+        <item>Tile</item>
+        <item>Full</item>
+        <item>Extend</item>
+        <item>Fill</item>
+        <variable>_RENDER_</variable>
+    </comboboxtext>
+    <hbox>
+    <entry auto-refresh="true" editable="false">
+        <input file>/tmp/wall-gate-f</input>
+        <variable>_E_W_</variable>
+    </entry>
+    <button>
+        <input file stock="gtk-open"></input>
+        <action>_PICK_WALL_</action>
+    </button>
+    </hbox>
+    </frame>
+    </vbox>
+    <vbox>
+    <frame>
+        <text><label>"Pick a Color"</label></text>
+        <entry auto-refresh="true">
+			<input file>/tmp/wall-gate-c</input>
+			<variable>_E_C_</variable>
+        </entry>
+        <button>
+			<input file stock="gtk-color-picker"></input>
+			<action>_PICK_COLOR_</action>
+		</button>
+    </frame>
+    </vbox>
+</hbox>    
+    <hbox homogeneous="true">
+		<button width-request="100">
+			<label>About</label>
+			<input file stock="gtk-about"></input>
+        </button>
+        <button width-request="150">
+			<label>Set Wallpaper</label>
+			<input file stock="gtk-execute"></input>
+			<action>_SET_WALLPAPER_ &</action>
+			<action>EXIT:exit</action>
+        </button>
+        <button width-request="100">
+			<label>Cancel</label>
+			<input file stock="gtk-cancel"></input>
+        </button>
+    </hbox>
+</vbox>
+</window>'

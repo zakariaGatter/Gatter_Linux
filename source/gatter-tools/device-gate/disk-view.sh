@@ -13,11 +13,18 @@ for M in $(lsblk -n -l | grep -v "/$" | awk '/part/{print $1}') ; do
         UNMOUNT_POINT="/dev/$M"
         INFO_DEV=$(lsblk $UNMOUNT_POINT -o "SIZE" -l -n )
         LABEL_DEV=$(lsblk $UNMOUNT_POINT -l -n -o "LABEL" )
+        MOUNT_DEV=$(lsblk $UNMOUNT_POINT -l -n -o "MOUNTPOINT" )
 
         #echo "<item icon=\"block-device\"> $UNMOUNT_POINT | $LABEL_DEV | $INFO_DEV | Mounted </item>"
-        echo "$UNMOUNT_POINT | $LABEL_DEV | $INFO_DEV | Mounted " >> /tmp/disk-gate 
+        echo "$UNMOUNT_POINT | $LABEL_DEV | $INFO_DEV | $MOUNT_DEV " >> /tmp/disk-gate 
     }
 done > /tmp/disk-gate
+}
+
+OPEN_DEV() {
+if [ -n "$(grep "$DISK" /proc/mounts)" ];then 
+	pcmanfm "$(lsblk $DISK -l -n -o MOUNTPOINT)"
+fi
 }
 
 LIST_DEVICES
@@ -145,6 +152,7 @@ export MAIN_DIALOG='
 		<input file>/tmp/disk-gate</input>
 		<variable>DISK</variable>
 		<height>200</height><width>600</width>
+		<action>OPEN_DEV</action>
 	</tree>
 	<hbox homogeneous="true">
 		<button width-request="100">

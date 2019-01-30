@@ -1,0 +1,16 @@
+#!/bin/bash 
+
+WALL_CONF="$HOME/.config/wall-gaterc"
+
+_WALL_=$(awk -F = '/^WALLPAPER/{print $2}' $WALL_CONF)
+WALL_COLOR=$(awk -F = '/^COLOR/{print $2}' $WALL_CONF)
+WALL_RENDER=$(awk -F = '/^RENDER/{print $2}' $WALL_CONF)
+WALL_SET=$(awk -F = '/^SET/{print $2}' $WALL_CONF)
+
+if [ "$WALL_SET" = "Wallpaper" ];then 
+	h_RENDER=$(echo $WALL_RENDER | tr "[:upper:]" "[:lower:]")
+	hsetroot -"$h_RENDER" "$_WALL_"
+else
+	hsetroot -solid "$WALL_COLOR"
+fi
+
