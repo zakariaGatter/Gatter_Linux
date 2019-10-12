@@ -1,0 +1,17 @@
+#!/bin/bash
+
+TITLE="Cal-gate"
+
+if ! wmctrl -c "$TITLE";then
+	yad \
+	--title=$TITLE \
+	--mouse \
+	--close-on-unfocus \
+	--window-icon="time-admin" \
+	--sticky \
+	--undecorated \
+	--scale \
+	--on-top \
+	--no-buttons \
+	--calendar
+fi
