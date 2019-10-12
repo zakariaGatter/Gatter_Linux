@@ -1,0 +1,10 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Device Gate
+GenericName=Device Gater
+Comment=Device Viewer for Gatter linux
+Icon=device-gate
+Exec=device-gate
+Terminal=false
+Type=Application
+Categories=Utility;

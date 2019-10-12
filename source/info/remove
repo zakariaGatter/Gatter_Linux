@@ -1,0 +1,21 @@
+apparmor
+apport
+rm -rvf /etc/apparmor*
+console-setup
+rm -rvf /etc/console-setup
+dictioners-comman
+ed
+ftp
+friendly-recovery
+gnome\*
+humanity-icon-theme
+installation-report
+install-info
+language-pack-gnome-\*
+nano
+obsession
+rsync
+telnet
+vim-\*
+wamerican
+wget

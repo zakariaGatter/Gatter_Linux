@@ -1,0 +1,10 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Locale Gate
+GenericName=Locale gate
+Comment=Locale Manager for Gatter Linux
+Icon=locale-gate
+Exec=locale-gate
+Terminal=false
+Type=Application
+Categories=Utility;

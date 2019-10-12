@@ -1,0 +1,10 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=USB Gate
+GenericName=usb gate
+Comment=Usb Utility for Gattter Linux
+Icon=usb-gate
+Exec=usb-gate
+Terminal=false
+Type=Application
+Categories=Settings;DesktopSettings;

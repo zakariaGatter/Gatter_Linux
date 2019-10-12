@@ -1,0 +1,10 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Corner Gate
+GenericName=Corner Gate
+Comment=Corner Manager For Gatter Linux
+Icon=corner-gate
+Exec=corner-gate
+Terminal=false
+Type=Application
+Categories=Settings;DesktopSettings;

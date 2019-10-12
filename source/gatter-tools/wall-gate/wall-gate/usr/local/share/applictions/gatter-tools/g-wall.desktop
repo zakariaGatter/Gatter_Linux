@@ -1,0 +1,10 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Wallpaper Gate
+GenericName=wallpaper gate
+Comment=Background Manager for Gatter Linux
+Icon=wall-gate
+Exec=wall-gate
+Terminal=false
+Type=Application
+Categories=Settings;DesktopSettings;

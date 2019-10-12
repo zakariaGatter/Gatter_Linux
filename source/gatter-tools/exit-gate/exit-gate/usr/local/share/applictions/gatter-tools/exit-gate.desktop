@@ -1,0 +1,10 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Exit Gate
+GenericName=Exit Gate
+Comment=Exit Dialog for Gatter Linux
+Icon=exit-gate
+Exec=exit-gate
+Terminal=false
+Type=Application
+Categories=Utility;

@@ -1,0 +1,10 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=AptGate
+GenericName=Aptgate
+Comment=Cli Package Manager for Gatter Linux
+Icon=aptgate
+Exec=aptgate
+Terminal=false
+Type=Application
+Categories=Utility;

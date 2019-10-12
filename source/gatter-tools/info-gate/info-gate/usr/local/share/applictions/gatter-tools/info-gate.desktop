@@ -1,0 +1,10 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Info Gate
+GenericName=info gate
+Comment=Information Displayer for Gatter Linux
+Icon=info-gate
+Exec=info-gate
+Terminal=false
+Type=Application
+Categories=Settings;DesktopSettings;

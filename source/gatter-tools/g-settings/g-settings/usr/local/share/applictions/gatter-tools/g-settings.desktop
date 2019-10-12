@@ -1,0 +1,10 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Gatter Settings
+GenericName=Gatter Settings
+Comment=Settings Dialog For Gatter Linux
+Icon=g-settings
+Exec=g-settings
+Terminal=false
+Type=Application
+Categories=Settings;DesktopSettings;

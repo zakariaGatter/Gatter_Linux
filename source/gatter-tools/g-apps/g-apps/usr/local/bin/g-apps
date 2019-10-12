@@ -1,0 +1,7 @@
+#!/bin/bash 
+
+rofi \
+	-show drun \
+	-show-icons \
+	-location 1 \
+	-yoffset 32

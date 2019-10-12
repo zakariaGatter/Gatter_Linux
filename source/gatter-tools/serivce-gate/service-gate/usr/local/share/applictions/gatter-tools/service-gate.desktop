@@ -1,0 +1,10 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Service Gate
+GenericName=Service gate
+Comment=Service Manager for Gatter Linux
+Icon=service-gate
+Exec=service-gate
+Terminal=false
+Type=Application
+Categories=Utility;

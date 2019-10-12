@@ -1,0 +1,10 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Hash Gate
+GenericName=hash gate
+Comment=Hash Calcul for Gatter Linux
+Icon=hash-gate
+Exec=g-hash
+Terminal=false
+Type=Application
+Categories=Utility;

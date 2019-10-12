@@ -1,0 +1,15 @@
+#!/bin/bash 
+
+yad \
+	--no-buttons \
+	--image=gatter \
+	--image-on-top \
+	--text="<span font='Terminus Bold 10'> Gatter Tools\n All Gatter Tools in one place</span>" \
+	--title="Gatter Tools" \
+	--window-icon=/usr/share/pixmaps/gatter.png \
+	--height=500 \
+	--width=650 \
+	--center \
+	--icons -\
+	-read-dir=$HOME/.local/share/applications/g-tools \
+	--monitor

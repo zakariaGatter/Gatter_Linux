@@ -1,0 +1,10 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Auto Gate
+GenericName=Auto Gate
+Comment=auto start dialog For Gatter Linux
+Icon=auto-gate
+Exec=auto-gate
+Terminal=false
+Type=Application
+Categories=Settings;DesktopSettings;

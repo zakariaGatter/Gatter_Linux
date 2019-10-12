@@ -1,0 +1,189 @@
+#!/bin/bash
+
+CONF_DIR="$HOME/.config/auto-gate"
+CONF_FILE="$CONF_DIR/config"
+
+if [ ! -d "$CONF_DIR" ];then 
+	mkdir -p $CONF_DIR
+fi
+
+#----------------------------------------#
+# DELETE ITEM FROM AUTOSTART APPLICATION #
+#----------------------------------------#
+function AUTO_DEL ()
+{
+	rm "$CONF_DIR/$1"
+}
+
+#-------------------------------------#
+# ADD ITEM INTO AUTOSTART APPLICATION #
+#-------------------------------------#
+function AUTO_ADD ()
+{
+export ADD_DIALOG='
+<window title="Add Application" icon-name="gtk-add" resizable="false">
+<vbox>
+	<text use-markup="true" justify="2"><label>"<span font='"'Terminus 14'"'><b><u> Add New Startup Command </u></b></span>"</label></text>
+	<frame>
+	<hbox>
+		<text use-markup="true"><label>"<span font='"'Terminus 10'"'> Description  : </span>"</label></text>
+		<entry width-request="250">
+			<variable>A_NAME</variable>
+		</entry>
+	</hbox>
+	<hbox>
+		<text use-markup="true"><label>"<span font='"'Terminus 10'"'> Exec Command : </span>"</label></text>
+		<entry width-request="250" fs-title="Add Autostart" fs-folder="/usr/bin">
+			<variable>A_COMMAND</variable>
+		</entry>
+		<button>
+			<input file stock="gtk-open"></input>
+			<action function="fileselect">A_COMMAND</action>
+		</button>
+	</hbox>
+	<hbox homogeneous="true">
+		<checkbox tooltip-text="Disable or Enable this Command">
+			<default>true</default>
+			<label>" Active "</label>
+			<variable>A_ACTIVE</variable>
+		</checkbox>
+		<vbox>
+			<hbox>
+				<text use-markup="true"><label>"<span font='"'Terminus 10'"'> Exec Command : </span>"</label></text>
+				<spinbutton tooltip-text="Wait NUM seconds before run Command.">
+					<default>0</default>
+					<variable>A_DELAY</variable>
+				</spinbutton>
+			</hbox>
+		</vbox>
+	</hbox>
+	</frame>
+	<hbox>
+		<button width-request="100">
+			<label>Set</label>
+			<input file stock="gtk-execute"></input>
+			<action>EXIT:ADD</action>
+		</button>
+		<button width-request="100">
+			<label>Cancel</label>
+			<input file stock="gtk-cancel"></input>
+		</button>
+	</hbox>
+</vbox>
+</window>'
+
+ADD_VAR=$(gtkdialog -c -p ADD_DIALOG)
+eval "$ADD_VAR"
+
+[ "$EXIT" = "ADD" ] && echo -e "Name=$A_NAME \nCommand=$A_COMMAND \nDelay=$A_DELAY \nActive=$A_ACTIVE" >> "$CONF_DIR/$A_NAME"
+}
+
+#--------------------------------------#
+# EDIT ITEM FROM AUTOSTART APPLICATION #
+#--------------------------------------#
+function AUTO_EDIT ()
+{
+_NAME_=$(grep -w "Name" "$CONF_DIR/$1" | cut -d '=' -f2-);
+_COMMAND_=$(grep -w "Command" "$CONF_DIR/$1" | cut -d '=' -f2-);
+_DELAY_=$(grep -w "Delay" "$CONF_DIR/$1" | cut -d '=' -f2-);
+_ACTIVE_=$(grep -w "Active" "$CONF_DIR/$1" | cut -d '=' -f2-);
+
+export EDIT_DIALOG='
+<window title="Edir Application" icon-name="gtk-edit" resizable="false">
+<vbox>
+	<text use-markup="true" justify="2"><label>"<span font='"'Terminus 14'"'><b><u> Edit Startup Command </u></b></span>"</label></text>
+	<frame>
+	<hbox>
+		<text use-markup="true"><label>"<span font='"'Terminus 10'"'> Description  : </span>"</label></text>
+		<entry width-request="250">
+			<variable>E_NAME</variable>
+			<default>'"$_NAME_"'</default>
+		</entry>
+	</hbox>
+	<hbox>
+		<text use-markup="true"><label>"<span font='"'Terminus 10'"'> Exec Command : </span>"</label></text>
+		<entry width-request="250"  fs-title="Add Autostart" fs-folder="/usr/bin">
+			<variable>E_COMMAND</variable>
+			<default>'"$_COMMAND_"'</default>
+		</entry>
+		<button>
+			<input file stock="gtk-open"></input>
+			<action function="fileselect">E_COMMAND</action>
+		</button>
+	</hbox>
+	<hbox homogeneous="true">
+		<checkbox tooltip-text="Disable or Enable this Command">
+			<default>'"$_ACTIVE_"'</default>
+			<label>" Active "</label>
+			<variable>E_ACTIVE</variable>
+		</checkbox>
+		<vbox>
+			<hbox>
+				<text use-markup="true"><label>"<span font='"'Terminus 10'"'> Delay before launch : </span>"</label></text>
+				<spinbutton tooltip-text="Wait NUM seconds before run Command.">
+					<default>'"$_DELAY_"'</default>
+					<variable>E_DELAY</variable>
+				</spinbutton>
+			</hbox>
+		</vbox>
+	</hbox>
+	</frame>
+	<hbox>
+		<button width-request="100">
+			<label>Set</label>
+			<input file stock="gtk-execute"></input>
+			<action>EXIT:EDIT</action>
+		</button>
+		<button width-request="100">
+			<label>Cancel</label>
+			<input file stock="gtk-cancel"></input>
+		</button>
+	</hbox>
+</vbox>
+</window>
+'
+
+EDIT_VAR=$(gtkdialog -c -p EDIT_DIALOG)
+eval "$EDIT_VAR"
+
+if [ "$EXIT" = "EDIT" ];then 
+	[ "$E_NAME" != "$_NAME_" ] && sed -i "s,$_NAME_,$E_NAME,g" "$CONF_DIR/$1"
+	[ "$E_COMMAND" != "$_COMMAND_" ] && sed -i "s,$_COMMAND_,$E_COMMAND,g" "$CONF_DIR/$1"
+	[ "$E_ACTIVE" != "$_ACTIVE_" ] && sed -i "s,$_ACTIVE_,$E_ACTIVE,g" "$CONF_DIR/$1"
+	[ "$E_DELAY" != "$_DELAY_" ] && sed -i "s,$_DELAY_,$E_DELAY,g" "$CONF_DIR/$1"
+fi
+}
+
+#----------------------------#
+# EXEC AUTOSTART APPLICATION #
+#----------------------------#
+function AUTO_EXEC ()
+{
+LIST_ITEMS=$(ls $CONF_DIR);
+
+echo "$LIST_ITEMS" | while read ITEM ; do
+	_E_COMMAND_=$(grep -w "Command" "$CONF_DIR/$ITEM" | cut -d '=' -f2-);
+	_E_DELAY_=$(grep -w "Delay" "$CONF_DIR/$ITEM" | cut -d '=' -f2-);
+	_E_ACTIVE_=$(grep -w "Active" "$CONF_DIR/$ITEM" | cut -d '=' -f2-);
+	
+	[ "$_E_ACTIVE_" = "true" ] && /bin/bash -c "( sleep $_E_DELAY_ && $_E_COMMAND_ ) &"
+done
+}
+
+#----------------#
+# FUNC ARGUMENTS #
+#----------------#
+case "$1" in
+	del )
+		AUTO_DEL "$2"
+	;;
+	add )
+		AUTO_ADD
+	;;
+	edit )
+		AUTO_EDIT "$2"
+	;;
+	exec )
+		AUTO_EXEC
+	;;
+esac 

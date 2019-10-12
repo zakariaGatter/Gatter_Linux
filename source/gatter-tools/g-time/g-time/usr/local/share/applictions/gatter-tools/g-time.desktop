@@ -1,0 +1,10 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Time Gate
+GenericName=Time gate
+Comment=Time Zone Manager for Gatter Linux
+Icon=g-time
+Exec=g-time
+Terminal=false
+Type=Application
+Categories=Settings;

@@ -1,0 +1,10 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Generator Gate
+GenericName=Generator gate
+Comment=Multi Generator for Gatter Linux
+Icon=g-gen
+Exec=g-gen
+Terminal=false
+Type=Application
+Categories=Settings;

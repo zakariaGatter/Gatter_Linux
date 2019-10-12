@@ -1,0 +1,10 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Diff Gate
+GenericName=Diff Gate
+Comment=Diff Manager for Gatter Linux
+Icon=diff-gate
+Exec=diff-gate
+Terminal=false
+Type=Application
+Categories=Utility;
