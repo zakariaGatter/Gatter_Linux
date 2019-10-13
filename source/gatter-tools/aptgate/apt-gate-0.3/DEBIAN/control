@@ -1,0 +1,9 @@
+Package: apt-gate
+Version: 0.3
+Architecture: all
+eEssential: no
+Priority: optional
+Depends: yad
+Maintainer: Zakaria Gatter
+Description: Cli Package Managet for Gatter Linux
+

@@ -1,0 +1,12 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Obmenu
+GenericName=Obmenu
+Comment=Graphical menu editor for openbox
+Icon=alacarte
+Exec=obmenu
+Terminal=false
+Type=Application
+Categories=Settings;DesktopSettings;
+Path=
+StartupNotify=false
