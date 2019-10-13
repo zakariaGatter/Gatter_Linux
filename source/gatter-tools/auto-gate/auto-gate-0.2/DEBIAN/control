@@ -1,0 +1,9 @@
+Package: auto-gate
+Version: 0.2
+Architecture: all
+Essential: no
+Priority: optional
+Depends: gtkdialog
+Maintainer: Zakaria Gatter
+Description: Autostart Applications Manager for Gatter Linux
+

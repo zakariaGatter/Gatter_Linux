@@ -1,0 +1,9 @@
+Package: cal-gate
+Version: 0.2
+Architecture: all
+Essential: no
+Priority: optional
+Depends: yad; wmctrl
+Maintainer: Zakaria Gatter
+Description: Calendar dialog for Gatter Linux
+

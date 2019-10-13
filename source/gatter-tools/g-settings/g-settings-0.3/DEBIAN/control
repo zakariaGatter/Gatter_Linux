@@ -1,0 +1,9 @@
+Package: g-settings
+Version: 0.3
+Architecture: all
+Essential: no
+Priority: optional
+Depends: gtkdialog
+Maintainer: Zakaria Gatter
+Description: Settings Dialog for Gatter Linux
+

@@ -1,0 +1,9 @@
+Package: gsu
+Version: 0.2
+Architecture: all
+Essential: no
+Priority: optional
+Depends: gtkdialog
+Maintainer: Zakaria Gatter
+Description: Sudo Interface for Gatter Linux
+

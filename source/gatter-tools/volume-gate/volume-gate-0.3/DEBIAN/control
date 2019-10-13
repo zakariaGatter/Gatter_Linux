@@ -1,9 +1,9 @@
-Package: apt-gate
+Package: volume-gate
 Version: 0.3
 Architecture: all
-eEssential: no
+Essential: no
 Priority: optional
 Depends: yad
 Maintainer: Zakaria Gatter
-Description: Cli Package Manager for Gatter Linux
+Description: Volume Tray for Gatter Linux
 

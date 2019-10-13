@@ -1,0 +1,10 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Task Gate
+GenericName=Task gate
+Comment=Selection Task Tool for Gatter Linux
+Icon=task-gate
+Exec=task-gate
+Terminal=false
+Type=Application
+Categories=Utility;

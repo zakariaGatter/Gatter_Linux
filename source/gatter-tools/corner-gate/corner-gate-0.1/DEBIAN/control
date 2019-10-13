@@ -1,0 +1,10 @@
+Package: corner-gate
+Version: 0.1
+Architecture: all
+Essential: no
+Priority: optional
+Depends: gtkdialog; xdotool
+Maintainer: Zakaria Gatter
+Description: Screen Corner Manager for Gatter Linux
+
+

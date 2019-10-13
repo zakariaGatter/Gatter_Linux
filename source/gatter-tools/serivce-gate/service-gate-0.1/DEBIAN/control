@@ -1,0 +1,9 @@
+Package: service-gate
+Version: 0.1
+Architecture: all
+Essential: no
+Priority: optional
+Depends: gtkdialog
+Maintainer: Zakaria Gatter
+Description: Service Manager for Gatter Linux
+

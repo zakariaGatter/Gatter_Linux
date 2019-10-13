@@ -1,0 +1,9 @@
+Package: g-gen
+Version: 0.3
+Architecture: all
+Essential: no
+Priority: optional
+Depends: gtkdialog
+Maintainer: Zakaria Gatter
+Description: Multi Tool Generator for Gatter Linux
+
